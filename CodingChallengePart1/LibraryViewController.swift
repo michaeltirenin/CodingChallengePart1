@@ -10,9 +10,9 @@ import UIKit
 
 class LibraryViewController: UIViewController {
     
-    var libraries = Library[]()
-    var shelves = Shelf[]()
-    var books = Book[]()
+    var libraries = [Library]()
+    var shelves = [Shelf]()
+    var books = [Book]()
     
     override func viewDidLoad() {
         
@@ -24,14 +24,18 @@ class LibraryViewController: UIViewController {
 
     func reportAllBooks() {
         
-        var allBooks = String[]()
+        var allBooks = [String]()
         for shelf:Shelf in shelves {
             for book:Book in shelf.books {
                 allBooks += book.bookTitle
             }
         }
-        var sortedAllBooks = sort(allBooks)
+
+        var sortedAllBooks: Array = allBooks
+        var sorted: () = sort(&sortedAllBooks, <)
+
         println("These libraries contain the following \(sortedAllBooks.count) books:\n")
+
         var i = 1
         for item in sortedAllBooks {
             println("\(i). \(item)")

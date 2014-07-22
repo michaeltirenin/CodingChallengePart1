@@ -14,19 +14,19 @@ import Foundation
 class Library: NSObject {
     
     var libraryName = String()
-    var shelves = Shelf[]()
+    var shelves = [Shelf]()
     
     init(libraryName: String) {
         
         self.libraryName = libraryName
-        var shelves = Shelf[]()
+        var shelves = [Shelf]()
     }
     
     // The library should have a method to report all books it contains.
     
     func reportAllBooks() {
     
-        var allBooks = String[]()
+        var allBooks = [String]()
         for shelf:Shelf in shelves {
             
             for book:Book in shelf.books {
@@ -34,7 +34,7 @@ class Library: NSObject {
                 allBooks += book.bookTitle
             }
         }
-        var sortedAllBooks = sort(allBooks)
+        var sortedAllBooks: () = sort(&allBooks)
         println("These libraries contain the following books: \(allBooks).")
     }
 }
